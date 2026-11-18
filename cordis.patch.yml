@@ -1,0 +1,4 @@
+# dsh-plugin-skillplaza 的 bundle patch 层:把本插件插进 profile(配置走 Config schema,设置页可改)。
+- insert:
+    - id: dsh-plugin-skillplaza
+      name: dsh-plugin-skillplaza

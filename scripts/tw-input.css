@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 广场运行态动画 —— 对齐 apps/web/src/index.css(Tailwind purge 不认动态类名,手写) */
+@keyframes flow-run-breathe {
+  0%, 100% { box-shadow: 0 0 0 2px #C6871F, 0 0 0 6px rgb(248 189 97 / 0.22); }
+  50%      { box-shadow: 0 0 0 2px #C6871F, 0 0 0 11px rgb(248 189 97 / 0.06); }
+}
+.flow-run-breathe { animation: flow-run-breathe 1.6s ease-in-out infinite; }
+
+/* 人工闸门等待审批:琥珀呼吸(流程活着、停在这里等你拍板) */
+@keyframes flow-wait-breathe {
+  0%, 100% { box-shadow: 0 0 0 2px #d97706, 0 0 0 6px rgb(245 158 11 / 0.25); }
+  50%      { box-shadow: 0 0 0 2px #d97706, 0 0 0 11px rgb(245 158 11 / 0.07); }
+}
+.flow-wait-breathe { animation: flow-wait-breathe 1.6s ease-in-out infinite; }
+
+/* 活动连线:虚线向目标端行进。dasharray 之和必须等于 dashoffset 行程(6+5=11),否则每轮跳一下 */
+@keyframes flow-edge-march {
+  from { stroke-dashoffset: 11; }
+  to   { stroke-dashoffset: 0; }
+}
+.flow-edge-march {
+  stroke-dasharray: 6 5;
+  animation: flow-edge-march 0.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-run-breathe { animation: none; box-shadow: 0 0 0 2px #C6871F, 0 0 0 6px rgb(248 189 97 / 0.22); }
+  .flow-wait-breathe { animation: none; box-shadow: 0 0 0 2px #d97706, 0 0 0 6px rgb(245 158 11 / 0.25); }
+  .flow-edge-march { animation: none; }
+}

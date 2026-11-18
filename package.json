@@ -1,0 +1,72 @@
+{
+  "name": "dsh-plugin-skillplaza",
+  "version": "0.2.0",
+  "description": "Skill 广场接入:浏览/搜索/安装 460+ 技能到你的 DSH 技能库,跑流程场景,面板实时看执行进度。",
+  "license": "MIT",
+  "author": "Skill Plaza",
+  "homepage": "https://iruidong.com/plaza",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raytone-lab/dsh-plugin-skillplaza.git"
+  },
+  "keywords": ["dsh-plugin", "dsh", "skill-plaza", "skills", "workflow"],
+  "type": "module",
+  "main": "./dist/index.js",
+  "dsh": {
+    "bundle": {
+      "patch": [
+        "./cordis.patch.yml"
+      ]
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    },
+    "manifestVersion": 1
+  },
+  "files": [
+    "dist",
+    "cordis.patch.yml",
+    "skills",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node --import ../node_modules/tsx/dist/loader.mjs scripts/build-client.mts",
+    "dev": "tsc -p tsconfig.json --watch",
+    "check": "tsc --noEmit -p tsconfig.check.json"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.5-alpha.1",
+    "@deepseek-ai/dsh-api-session-controller": "^0.2.1-alpha.2",
+    "@deepseek-ai/dsh-client-ui-layout": "^0.2.1-alpha.2",
+    "@deepseek-ai/dsh-client-ui-sidebar": "^0.2.1-alpha.2",
+    "@deepseek-ai/dsh-commands": "^0.2.1-alpha.2",
+    "@deepseek-ai/dsh-tools": "^0.2.1-alpha.2",
+    "@deepseek-ai/schemastery": "^3.18.5-alpha.1",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "esbuild": "^0.28.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.12.1",
+    "fflate": "^0.8.3",
+    "lucide-react": "^1.73.0",
+    "react-router-dom": "^6.30.6"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./client": "./dist/client/index.js",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
